@@ -21,13 +21,13 @@ public class Main extends JFrame implements ActionListener {
 		// 드래그 할 때 마다 Command 생성
 		canvas.addMouseMotionListener(new MouseAdapter() {
 			public void mouseDragged(MouseEvent e) {
-				Command cmd = new DrawCommand(canvas, e.getPoint());
+				Command cmd = new DrawCommand(canvas, e.getPoint(), canvas.getColor());
 				history.append(cmd);
 				cmd.execute();
 			}
 		});
-		// 버튼 누르면 작동하게 설정
 		
+		// 버튼 누르면 작동하게 설정
 		clearButton.addActionListener(this);
 		undoButton.addActionListener(this);
 		redButton.addActionListener(this);
@@ -37,10 +37,10 @@ public class Main extends JFrame implements ActionListener {
 		// Box는 프레임의 끝을 만나면 줄바꿈 안하고 프레임을 넘겨서 채운다.
 		Box buttonBox = new Box(BoxLayout.X_AXIS);
 		// 버튼 생성
+		buttonBox.add(clearButton);
 		buttonBox.add(redButton);
 		buttonBox.add(blueButton);
 		buttonBox.add(greenButton);
-		buttonBox.add(clearButton);
 		buttonBox.add(undoButton);
 		
 		Box mainBox = new Box(BoxLayout.Y_AXIS);
@@ -54,7 +54,7 @@ public class Main extends JFrame implements ActionListener {
 		// setVisible(boolean) 컴포넌트 보이기/숨기기
 		setVisible(true);
 	}
-		
+	
 	public void actionPerformed(ActionEvent e) {
 		// getSource() : 초기에 발생한 이벤트의 객체를 리턴
 		// clearButton 누르면 clear
@@ -67,6 +67,7 @@ public class Main extends JFrame implements ActionListener {
 			history.undo();
 			canvas.repaint();
 		}
+		// 
 		else if(e.getSource() == redButton) {
 			canvas.setColor(Color.RED);
 		}
@@ -82,5 +83,3 @@ public class Main extends JFrame implements ActionListener {
 		new Main("Command Pattern Sample");
 	}
 }
-
-

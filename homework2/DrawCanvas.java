@@ -18,7 +18,11 @@ public class DrawCanvas extends Canvas implements Drawable {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	// 이력 전체를 다시 그리기
+
+	public Color getColor() {
+		return color;
+	}
+	// 이력 전체를 다시 그리기 reprint 할 때마다 실행
 	public void paint(Graphics g) {
 		history.execute();
 	}
