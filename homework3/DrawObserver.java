@@ -1,16 +1,23 @@
 package homework3;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class DrawObserver extends JFrame implements Observer {
+public class DrawObserver extends JFrame implements Observer, ActionListener {
 	
 	protected JTextArea textArea;
+	private JButton closeButton = new JButton("close");
 	
 	DrawObserver() {
 		setTitle("Observer Command");
@@ -18,6 +25,18 @@ public class DrawObserver extends JFrame implements Observer {
 		setSize(400, 400);
 		setBackground(Color.white);
 		setPreferredSize(new Dimension(400, 400));
+		
+		closeButton.addActionListener(this);
+		
+		// 버튼 생성
+		add(closeButton, "South");
+		
+		// 클릭시 종료
+		closeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		
 		JPanel panel = new JPanel();
 		textArea = new JTextArea(0, 33);
@@ -39,7 +58,7 @@ public class DrawObserver extends JFrame implements Observer {
 		
 		g.setColor(Color.RED);
 		// 부채꼴 90도 에서 360도를 그리게 설정
-		g.fillArc(55, 77, 300, 300, 90, -count*10);
+		g.fillArc(55, 75, 280, 280, 90, -count*10);
 		
 		str = count + " ";
 		for(int i=0; i<count; i++) {
@@ -52,5 +71,11 @@ public class DrawObserver extends JFrame implements Observer {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
