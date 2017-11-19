@@ -21,8 +21,9 @@ public class Main extends JFrame implements ActionListener {
 		// 드래그 할 때 마다 Command 생성
 		canvas.addMouseMotionListener(new MouseAdapter() {
 			public void mouseDragged(MouseEvent e) {
-				Command cmd = new DrawCommand(canvas, e.getPoint(), canvas.getColor());
-				history.append(cmd);
+				Command cmd = new DrawCommand(canvas, e.getPoint());
+				Command cmd2 = new ColorCommand(canvas, canvas.getColor());
+				history.append(cmd, cmd2);
 				cmd.execute();
 			}
 		});

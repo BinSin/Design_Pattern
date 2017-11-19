@@ -14,8 +14,9 @@ public class MacroCommand implements Command {
 		}
 	}
 	// Ãß°¡
-	public void append(Command cmd) {
+	public void append(Command cmd, Command cmd2) {
 		if(cmd != this) {
+			commands.push(cmd2);
 			commands.push(cmd);
 		}
 	}
