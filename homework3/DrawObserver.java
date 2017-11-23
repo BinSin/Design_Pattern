@@ -1,14 +1,11 @@
 package homework3;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +17,7 @@ public class DrawObserver extends JFrame implements Observer, ActionListener {
 	private JButton closeButton = new JButton("close");
 	
 	DrawObserver() {
+		
 		setTitle("Observer Command");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400, 400);
@@ -30,13 +28,6 @@ public class DrawObserver extends JFrame implements Observer, ActionListener {
 		
 		// 버튼 생성
 		add(closeButton, "South");
-		
-		// 클릭시 종료
-		closeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
 		
 		JPanel panel = new JPanel();
 		textArea = new JTextArea(0, 33);
@@ -60,6 +51,7 @@ public class DrawObserver extends JFrame implements Observer, ActionListener {
 		// 부채꼴 90도 에서 360도를 그리게 설정
 		g.fillArc(55, 75, 280, 280, 90, -count*10);
 		
+		
 		str = count + " ";
 		for(int i=0; i<count; i++) {
 			str += "*";
@@ -71,11 +63,15 @@ public class DrawObserver extends JFrame implements Observer, ActionListener {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
 		}
+		// 다시 그린다.
+		this.repaint();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		// 클릭시 종료
+		if(e.getSource().equals(closeButton)) {
+			System.exit(0);
+		}
 	}
 }

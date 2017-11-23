@@ -1,8 +1,6 @@
 package homework3;
 
-import javax.swing.JFrame;
-
-public class Main extends JFrame {
+public class Main {
 
 	public static void main(String[] args) {
 		// 0 ~ 36 까지 수 출력
